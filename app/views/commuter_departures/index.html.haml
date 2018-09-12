@@ -1,0 +1,23 @@
+%h1
+  = station_name(@stop_id)
+%table{class: "table"}
+  %colgroup
+    %col{style: "width: 20%"}
+    %col{style: "width: 60%"}
+    %col{style: "width: 10%"}
+    %col{style: "width: 10%"}
+  %tr
+    %th Departing
+    %th Destination
+    %th Status
+    %th Track
+  - @commuter_departures.sort_by(&:departure_time).each do |commuter_departure|
+    %tr
+      %td
+        = displayable_time(commuter_departure.departure_time)
+      %td
+        = commuter_departure.destination
+      %td
+        = commuter_departure.status
+      %td
+        = commuter_departure.track_number
